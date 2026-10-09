@@ -94,9 +94,9 @@ def test_chat_sends_lesson_once_and_code_only_when_changed(tmp_path, monkeypatch
     conversation.send("help", lambda t: None, api=object())
 
     assert "--- Lesson (README.md) ---" in sent[0]
-    assert "My current exercises.py" in sent[0]
+    assert "My current code" in sent[0] and "exercises.py" in sent[0]
     assert "--- Lesson" not in sent[1]
-    assert "My current exercises.py" not in sent[1]  # code unchanged since last message
+    assert "My current code" not in sent[1]  # code unchanged since last message
     assert "My latest test run (some failed)" in sent[1]
 
     reloaded = chat.Chat("m01")

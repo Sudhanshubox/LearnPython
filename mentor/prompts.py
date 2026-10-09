@@ -69,7 +69,7 @@ code and the pytest output. Look at the first failing test only. Explain in plai
 words what the failure message means and give one small hint toward the fix. Do \
 not write the corrected code.
 
---- exercises.py ---
+--- Their code ---
 {code}
 
 --- pytest output ---
@@ -83,7 +83,7 @@ but not idiomatic, inefficient, or fragile on edge cases the tests don't cover. 
 Show a more Pythonic version only for parts that clearly benefit. End with one \
 "go deeper" challenge that stretches the same idea further.
 
---- exercises.py ---
+--- Their code ---
 {code}
 """
 

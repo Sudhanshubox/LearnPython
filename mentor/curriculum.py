@@ -4,6 +4,7 @@ Layout: curriculum/phaseNN_<name>/mNN_<name>/ containing
   README.md          the lesson
   exercises.py       stubs the learner fills in
   test_exercises.py  pytest checks for the exercises
+Some modules (packages, projects) have more .py files for the learner to edit.
 """
 
 import subprocess
@@ -25,7 +26,7 @@ class Module:
     @property
     def lesson(self):
         readme = self.path / "README.md"
-        return readme.read_text() if readme.exists() else ""
+        return readme.read_text(encoding="utf-8") if readme.exists() else ""
 
     @property
     def title(self):
@@ -35,10 +36,33 @@ class Module:
     @property
     def exercises(self):
         file = self.path / "exercises.py"
-        return file.read_text() if file.exists() else ""
+        return file.read_text(encoding="utf-8") if file.exists() else ""
 
-    def save_exercises(self, code):
-        (self.path / "exercises.py").write_text(code)
+    @property
+    def files(self):
+        """Python files the learner edits (not tests), relative to the module, exercises.py first."""
+        found = sorted(
+            p.relative_to(self.path).as_posix()
+            for p in self.path.rglob("*.py")
+            if not p.name.startswith("test_")
+            and p.name != "conftest.py"
+            and not any(part.startswith((".", "__pycache__")) for part in p.relative_to(self.path).parts)
+        )
+        return sorted(found, key=lambda f: f != "exercises.py")
+
+    def read_file(self, rel):
+        if rel not in self.files:
+            raise KeyError(rel)
+        return (self.path / rel).read_text(encoding="utf-8")
+
+    def write_file(self, rel, code):
+        if rel not in self.files:
+            raise KeyError(rel)
+        (self.path / rel).write_text(code, encoding="utf-8")
+
+    def code_snapshot(self):
+        """All of the learner's files as one markdown string, for the mentor."""
+        return "\n\n".join(f"{rel}:\n```python\n{self.read_file(rel)}\n```" for rel in self.files)
 
 
 def all_modules():

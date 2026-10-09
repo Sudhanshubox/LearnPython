@@ -11,6 +11,7 @@ import webbrowser
 from http import HTTPStatus
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
+from urllib.parse import parse_qs, urlsplit
 
 from .. import client, config, curriculum, progress
 from ..chat import GENERAL, Chat
@@ -50,7 +51,19 @@ class Handler(BaseHTTPRequestHandler):
         return json.loads(self.rfile.read(length) or b"{}")
 
     def _parts(self):
-        return [p for p in self.path.split("?", 1)[0].split("/") if p]
+        return [p for p in urlsplit(self.path).path.split("/") if p]
+
+    def _query(self, name):
+        return parse_qs(urlsplit(self.path).query).get(name, [""])[0]
+
+    def _save_file(self, mod, body):
+        """Save body["code"] to body["path"] (default exercises.py). Returns False after sending an error."""
+        try:
+            mod.write_file(body.get("path") or "exercises.py", body.get("code", ""))
+        except KeyError:
+            self._error(HTTPStatus.BAD_REQUEST, "You can only edit the module's existing exercise files")
+            return False
+        return True
 
     def _module(self, module_id):
         mod = curriculum.get(module_id)
@@ -77,7 +90,19 @@ class Handler(BaseHTTPRequestHandler):
         if len(parts) == 3 and parts[:2] == ["api", "module"]:
             mod = self._module(parts[2])
             if mod:
-                self._send_json({"id": mod.id, "title": mod.title, "lesson": mod.lesson, "code": mod.exercises})
+                files = mod.files
+                self._send_json({
+                    "id": mod.id, "title": mod.title, "lesson": mod.lesson,
+                    "files": files, "code": mod.read_file(files[0]) if files else "",
+                })
+            return
+        if len(parts) == 4 and parts[:2] == ["api", "module"] and parts[3] == "file":
+            mod = self._module(parts[2])
+            if mod:
+                try:
+                    self._send_json({"path": self._query("path"), "code": mod.read_file(self._query("path"))})
+                except KeyError:
+                    self._error(HTTPStatus.NOT_FOUND, "No such exercise file")
             return
         if len(parts) == 3 and parts[:2] == ["api", "chat"]:
             chat = self._chat(parts[2])
@@ -98,11 +123,12 @@ class Handler(BaseHTTPRequestHandler):
             if not mod:
                 return
             if parts[3] == "code":
-                mod.save_exercises(body.get("code", ""))
-                return self._send_json({"ok": True})
+                if self._save_file(mod, body):
+                    self._send_json({"ok": True})
+                return
             if parts[3] == "test":
-                if "code" in body:
-                    mod.save_exercises(body["code"])
+                if "code" in body and not self._save_file(mod, body):
+                    return
                 passed, output = curriculum.run_tests(mod)
                 progress.record_attempt(mod.id, passed)
                 Chat(mod.id).record_tests(passed, output)

@@ -37,7 +37,7 @@ class Chat:
         self.path = config.CHATS_DIR / f"{key}.json"
         self.state = {"api": [], "display": [], "code_hash": None, "pending_tests": None}
         if self.path.exists():
-            self.state.update(json.loads(self.path.read_text()))
+            self.state.update(json.loads(self.path.read_text(encoding="utf-8")))
 
     @property
     def module(self):
@@ -45,7 +45,7 @@ class Chat:
 
     def save(self):
         self.path.parent.mkdir(parents=True, exist_ok=True)
-        self.path.write_text(json.dumps(self.state, indent=1))
+        self.path.write_text(json.dumps(self.state, indent=1), encoding="utf-8")
 
     def display(self):
         return self.state["display"]
@@ -67,9 +67,9 @@ class Chat:
                 module_id=mod.id, phase=mod.phase, lesson=mod.lesson,
             ))
         if mod:
-            code = mod.exercises
+            code = mod.code_snapshot()
             if _hash(code) != self.state["code_hash"]:
-                parts.append(f"--- My current exercises.py ---\n```python\n{code}\n```")
+                parts.append(f"--- My current code ---\n{code}")
         tests = self.state["pending_tests"]
         if tests:
             verdict = "all passed" if tests["passed"] else "some failed"
@@ -95,7 +95,7 @@ class Chat:
             ]
             mod = self.module
             if mod:
-                self.state["code_hash"] = _hash(mod.exercises)
+                self.state["code_hash"] = _hash(mod.code_snapshot())
             self.state["pending_tests"] = None
             self.save()
             return reply_text

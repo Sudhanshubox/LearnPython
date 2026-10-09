@@ -16,14 +16,14 @@ DEFAULT = {
 def load():
     if not config.PROGRESS_FILE.exists():
         return json.loads(json.dumps(DEFAULT))
-    data = json.loads(config.PROGRESS_FILE.read_text())
+    data = json.loads(config.PROGRESS_FILE.read_text(encoding="utf-8"))
     for key, value in DEFAULT.items():
         data.setdefault(key, type(value)())
     return data
 
 
 def save(data):
-    config.PROGRESS_FILE.write_text(json.dumps(data, indent=2) + "\n")
+    config.PROGRESS_FILE.write_text(json.dumps(data, indent=2) + "\n", encoding="utf-8")
 
 
 def record_attempt(module_id, passed):

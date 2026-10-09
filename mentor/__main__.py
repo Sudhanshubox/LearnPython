@@ -65,12 +65,12 @@ def cmd_check(args):
         print("All tests passed!" if passed else "Some tests failed.")
         return
     template = prompts.CHECK_PASSED if passed else prompts.CHECK_FAILED
-    client.session(template.format(module_id=mod.id, code=mod.exercises, output=output))
+    client.session(template.format(module_id=mod.id, code=mod.code_snapshot(), output=output))
 
 
 def cmd_review(args):
     path = Path(args.file)
-    client.session(prompts.REVIEW.format(filename=path.name, code=path.read_text()))
+    client.session(prompts.REVIEW.format(filename=path.name, code=path.read_text(encoding="utf-8")))
 
 
 def cmd_quiz(args):

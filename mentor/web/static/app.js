@@ -12,6 +12,7 @@ const QUICK = {
 const state = {
   modules: [],
   current: null, // module id
+  file: "exercises.py", // file open in the editor
   dirty: false,
   busy: false,
   lastTestOutput: "",
@@ -82,9 +83,12 @@ async function openModule(id) {
   $("#module-select").value = id;
   renderMarkdown($("#lesson"), mod.lesson);
   $("#lesson").scrollTop = 0;
-  editor.setValue(mod.code);
-  editor.clearHistory();
-  setDirty(false);
+  state.file = mod.files[0] || "exercises.py";
+  const picker = $("#file-select");
+  picker.innerHTML = "";
+  for (const f of mod.files) picker.append(new Option(f, f));
+  picker.hidden = mod.files.length < 2;
+  loadIntoEditor(mod.code);
   $("#test-panel").hidden = true;
   $("#chat-scope").textContent = id;
   await loadChat();
@@ -124,8 +128,22 @@ function setDirty(dirty) {
   $("#save-state").textContent = dirty ? "Unsaved changes" : "Saved";
 }
 
+function loadIntoEditor(code) {
+  editor.setValue(code);
+  editor.clearHistory();
+  setDirty(false);
+}
+
+async function openFile(path) {
+  if (state.dirty) await save();
+  const { code } = await api(`/api/module/${state.current}/file?path=${encodeURIComponent(path)}`);
+  state.file = path;
+  $("#file-select").value = path;
+  loadIntoEditor(code);
+}
+
 async function save() {
-  await api(`/api/module/${state.current}/code`, { code: editor.getValue() });
+  await api(`/api/module/${state.current}/code`, { path: state.file, code: editor.getValue() });
   setDirty(false);
 }
 
@@ -134,7 +152,7 @@ async function runTests() {
   btn.disabled = true;
   btn.textContent = "Running…";
   try {
-    const result = await api(`/api/module/${state.current}/test`, { code: editor.getValue() });
+    const result = await api(`/api/module/${state.current}/test`, { path: state.file, code: editor.getValue() });
     setDirty(false);
     state.lastTestOutput = result.output;
     const verdict = $("#test-verdict");
@@ -302,6 +320,7 @@ $("#next-module").addEventListener("click", () => {
   if (i + 1 < state.modules.length) openModule(state.modules[i + 1].id);
 });
 $("#save").addEventListener("click", save);
+$("#file-select").addEventListener("change", (e) => openFile(e.target.value));
 $("#run").addEventListener("click", runTests);
 $("#ask-failure").addEventListener("click", (e) => {
   send(e.target.dataset.passed === "true"

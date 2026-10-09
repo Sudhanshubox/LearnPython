@@ -14,3 +14,4 @@ venv/
 
 # Data you create while doing the projects
 curriculum/**/expenses.json
+.mypy_cache/

@@ -17,6 +17,8 @@ See **[ROADMAP.md](ROADMAP.md)** for the full curriculum: 9 phases across three 
    pip install -r requirements.txt
    ```
 
+   This includes PyTorch for Phase 6 onwards, which is a large download on Linux (several GB with GPU libraries). Without an NVIDIA GPU you can install the much smaller CPU-only build first: `pip install torch --index-url https://download.pytorch.org/whl/cpu`.
+
 3. Get an API key from the [Anthropic Console](https://console.anthropic.com) and set it:
 
    ```bash

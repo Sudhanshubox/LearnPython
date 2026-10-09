@@ -55,7 +55,7 @@ async function loadModules() {
     if (!group || group.dataset.phase !== m.phase) {
       group = document.createElement("optgroup");
       group.dataset.phase = m.phase;
-      group.label = m.phase.replace(/^phase(\d+)_/, "Phase $1 · ").replaceAll("_", " ");
+      group.label = m.phase.replace(/^phase(\d+)_/, (_, n) => `Phase ${Number(n)} · `).replaceAll("_", " ");
       select.append(group);
     }
     const opt = document.createElement("option");

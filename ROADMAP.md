@@ -20,9 +20,9 @@ Times assume about 10–12 hours a week. Go slower if you need to: depth matters
 
 ## Phase 2 · Problem solving and data structures (6–8 weeks, then ongoing)
 
-Big-O analysis · arrays and two pointers · hashing · stacks and queues · recursion and backtracking · sorting and binary search · linked lists · trees and BSTs · heaps · graphs (BFS, DFS, shortest paths) · dynamic programming · greedy algorithms
+`m12` complexity and a problem-solving framework · `m13` two pointers and sliding windows · `m14` stacks and queues · `m15` recursion and backtracking · `m16` sorting and binary search · `m17` linked lists · `m18` trees and BSTs · `m19` heaps and priority queues · `m20` graphs · `m21` dynamic programming · `m22` greedy algorithms and intervals
 
-**Practice:** a problem-solving framework (understand → examples → brute force → optimize → test → analyze), then LeetCode/Codeforces problems reviewed by the mentor.
+**Project (`m23`):** a ten-problem contest with no technique hints. After that, keep solving 3–5 problems a week on LeetCode/Codeforces, reviewed by the mentor.
 
 ## Phase 3 · Professional Python (5–6 weeks)
 

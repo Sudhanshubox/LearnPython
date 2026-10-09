@@ -77,7 +77,11 @@ def run_tests(mod):
     """Run the module's tests. Returns (passed, output)."""
     try:
         result = subprocess.run(
-            [sys.executable, "-m", "pytest", str(mod.path), "-q", "--no-header", "--tb=short", "-p", "no:cacheprovider"],
+            [
+                sys.executable, "-m", "pytest", str(mod.path), "-q", "--no-header", "--tb=short",
+                # Stop any single test after 5s so an infinite loop shows up as a clear failure.
+                "--timeout=5", "-p", "no:cacheprovider",
+            ],
             capture_output=True,
             text=True,
             cwd=mod.path,

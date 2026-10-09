@@ -52,9 +52,9 @@ Every concept is implemented from scratch in NumPy before you use a library for 
 
 ## Phase 7 · Transformers and LLMs (8–10 weeks)
 
-Tokenization (build BPE) · embeddings · attention from scratch · the Transformer architecture · build and train a small GPT · scaling laws · pretraining, fine-tuning, LoRA · RLHF and preference optimization (concepts) · inference: sampling, KV cache, quantization
+`m66` tokenization: build a byte-level BPE tokenizer · `m67` language models: n-grams, perplexity, embeddings, Bengio's MLP LM · `m68` attention from scratch: masks, multi-head, FlashAttention's online softmax · `m69` the Transformer: build GPT (RoPE, RMSNorm, weight tying, exact parameter counts) · `m70` train your own GPT on this course's lessons · `m71` inference: top-k/top-p sampling, the KV cache, int8/int4 quantization · `m72` scaling laws: power-law fits, Chinchilla and its replication · `m73` fine-tuning and LoRA: SFT loss masking, LoRA vs full fine-tuning · `m74` preference optimization: reward models, RLHF's KL objective, DPO
 
-**Research:** read and reproduce *Attention Is All You Need*, GPT-2 and LoRA at small scale.
+**Research project (`m75`):** reproduce *Teaching Arithmetic to Small Transformers*: reversed-digit answers make addition far easier to learn; analyse errors by number of carries and report seed variance.
 
 ## Phase 8 · LLM engineering (6–8 weeks)
 

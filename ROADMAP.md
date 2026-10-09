@@ -40,9 +40,9 @@ Every concept is implemented from scratch in NumPy before you use a library for 
 
 ## Phase 5 · Data and classical machine learning (6–7 weeks)
 
-Pandas and data cleaning · visualization (Matplotlib, Seaborn) · linear and logistic regression from scratch · decision trees, random forests, gradient boosting · k-means and PCA · evaluation, cross-validation and avoiding data leakage · scikit-learn pipelines · feature engineering
+`m46` pandas fundamentals · `m47` data cleaning · `m48` visualization · `m49` the ML workflow and evaluation · `m50` linear and logistic regression from scratch · `m51` decision trees and random forests from scratch · `m52` unsupervised learning: k-means, silhouette, anomalies · `m53` feature engineering and scikit-learn pipelines · `m54` gradient boosting from scratch
 
-**Project:** an end-to-end prediction project on a real Kaggle dataset, written up like a report.
+**Project (`m55`):** end-to-end churn prediction on a messy dataset with a hidden leakage trap, a cost-based decision threshold and a written report.
 
 ## Phase 6 · Deep learning (8–10 weeks)
 

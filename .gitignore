@@ -11,3 +11,6 @@ venv/
 
 # Saved mentor conversations from the study screen
 .mentor/
+
+# Data you create while doing the projects
+curriculum/**/expenses.json

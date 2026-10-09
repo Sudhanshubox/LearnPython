@@ -14,9 +14,9 @@ Times assume about 10–12 hours a week. Go slower if you need to: depth matters
 
 ## Phase 1 · Python foundations (5–6 weeks)
 
-`m01` values, names and types ✅ · `m02` strings in depth · `m03` conditionals and boolean logic · `m04` loops and iteration patterns · `m05` lists and tuples · `m06` dicts and sets · `m07` functions, scope and recursion · `m08` errors and exceptions · `m09` files, paths and JSON · `m10` debugging (pdb, tracebacks, print vs logging)
+`m01` values, names and types · `m02` strings in depth · `m03` conditionals and boolean logic · `m04` loops and iteration patterns · `m05` lists and tuples · `m06` dicts and sets · `m07` functions, scope and recursion · `m08` errors and exceptions · `m09` files, paths and JSON · `m10` debugging
 
-**Project:** a command-line expense tracker that saves to JSON.
+**Project (`m11`):** a command-line expense tracker that saves to JSON.
 
 ## Phase 2 · Problem solving and data structures (6–8 weeks, then ongoing)
 

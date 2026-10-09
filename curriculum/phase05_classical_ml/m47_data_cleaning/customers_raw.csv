@@ -1,0 +1,72 @@
+ Customer ID,City ,AGE,Annual Income,E-mail,Signup Date
+534,Pune,19 years,"$113,000",gopal34@example.com,2025-10-30
+506,Mumbai,999,$ 67000,asha6@example.com,2025-06-24
+546,  Chennai ,36,"$246,000",gopal46@,2025-04-09
+535,Delhi,37,"$225,000",,2025-01-04
+508,mumbai,36,"$85,000",dev8@example.com,2026-01-07
+513,Delhi,55,"$9,999,999",ben13@example.com,2026-01-22
+531,  Bengaluru ,60,62000,farah31@example.com,2026-03-01
+548,bengaluru,55,"$242,000",farah48@example.com,2025-03-14
+527,Bengaluru, 29,"$52,000",dev27@example.com,2025-07-27
+544,Bengaluru,,,asha44@example.com,2026-06-07
+539,DELHI,69 years,$ 192000,dev39@example.com,2026-08-27
+559,Delhi,,$ 67000,eva59@example.com,2026-03-06
+516,CHENNAI, 54,"$243,000",farah16@example.com,2025-04-19
+500,  Delhi ,46,,chen0@example.com,2025-07-12
+504,  Chennai ,48,"$215,000",chen4@example.com,2026-06-26
+512,DELHI,43 years,274000,asha12@example.com,2025-10-08
+511,Chennai,52,"$242,000",dev11@example.com,2025-02-21
+548,bengaluru,55,"$242,000",farah48@example.com,2025-04-13
+525,PUNE,23,"$281,000",,2025-02-07
+552,Pune,40 years,,chen52@example.com,2025-01-22
+547,Delhi,69,"$152,000",gopal47@example.com,2025-10-05
+541,PUNE,62 years,"$94,000",chen41@example.com,2026-06-24
+550,DELHI,39,"$57,000",eva50@example.com,2026-01-05
+557,Mumbai,30,"$98,000",farah57@example.com,2025-11-20
+545,Pune,20,,ben45@example.com,2026-06-27
+536,Mumbai,49,"$249,000",chen36.example.com,2025-12-10
+518,  Pune ,,"$169,000",eva18@example.com,2025-03-17
+509,CHENNAI,67,209000,gopal9@example.com,2025-03-02
+542,  Chennai ,25,244000,ben42@example.com,2025-08-16
+535,Delhi,37,"$225,000",,2025-02-03
+550,DELHI,39,"$57,000",eva50@example.com,2025-12-06
+523,  Mumbai ,33,134000,asha23@example.com,2025-03-17
+528,CHENNAI,35 years,135000,eva28.example.com,2025-02-26
+554,  Pune ,61 years,71000,dev54@example.com,2026-03-06
+502,  Delhi ,32,,dev2@example.com,2025-05-27
+530,Mumbai,44,"$99,000",farah30@example.com,2025-09-26
+558,DELHI,31 years,"$93,000",ben58@example.com,2026-05-31
+537,Pune,-3,"$90,000",dev37@example.com,2026-03-10
+515,CHENNAI,39,"$291,000",eva15@example.com,2026-02-28
+543,Bengaluru,39,"$95,000",dev43@example.com,2025-08-14
+507,  Delhi ,67,59000,dev7@example.com,2025-05-07
+547,Delhi,69,"$152,000",gopal47@example.com,2025-10-05
+536,Mumbai,49,"$249,000",chen36.example.com,2025-12-10
+533,delhi,36 years,"$250,000",asha33@example.com,2025-04-15
+540,Bengaluru,,$ 278000,dev40@example.com,2026-08-11
+505,Delhi,25,$ 207000,dev5@example.com,2026-07-20
+551,CHENNAI,68,"$114,000",chen51@example.com,2025-07-13
+501,Pune,25,163000,gopal1@example.com,2025-11-29
+549,mumbai,43,143000,,2025-08-30
+502,  Delhi ,32,,dev2@example.com,2025-04-27
+522,  Pune ,50,85000,eva22@example.com,2025-01-28
+553,Delhi,42,"$220,000",ben53@,2025-11-30
+517,Bengaluru,,"$89,000",ben17@example.com,2026-01-30
+526,Chennai,48,291000,eva26@example.com,2025-05-01
+514,DELHI,25,"$132,000",eva14@example.com,2026-07-29
+539,DELHI,69 years,$ 192000,dev39@example.com,2026-07-28
+529,pune,26,138000,gopal29@example.com,2025-10-17
+544,Bengaluru,,,asha44@example.com,2026-05-08
+520,Chennai,41,,,2025-05-29
+532,Mumbai,47,$ 298000,dev32@example.com,2025-05-24
+538,Pune,54,195000,dev38@example.com,2025-02-05
+555,PUNE,44,206000,dev55@example.com,2026-03-18
+533,delhi,36 years,"$250,000",asha33@example.com,2025-05-15
+510,CHENNAI,20,"$213,000",,2025-01-16
+541,PUNE,62 years,"$94,000",chen41@example.com,2026-05-25
+519,CHENNAI,18 years,217000,dev19@example.com,2025-11-28
+521,pune, 52,,ben21@example.com,2025-04-29
+500,  Delhi ,46,,chen0@example.com,2025-07-12
+556,Chennai, 35,"$109,000",gopal56@example.com,2026-01-03
+503,Delhi,38,,gopal3@example.com,2026-07-22
+524,  Delhi ,63,"$26,000",ben24@example.com,2025-07-20

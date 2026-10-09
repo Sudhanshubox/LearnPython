@@ -46,9 +46,9 @@ Every concept is implemented from scratch in NumPy before you use a library for 
 
 ## Phase 6 · Deep learning (8–10 weeks)
 
-Build an autograd engine from scratch (like micrograd) · neural networks and backpropagation · PyTorch fundamentals · training loops, initialization, normalization and regularization · CNNs · RNNs and LSTMs · debugging training (loss curves, gradient checks, overfitting a single batch) · GPUs and mixed precision
+`m56` an autograd engine from scratch (micrograd-style) · `m57` neural networks from scratch in NumPy · `m58` PyTorch fundamentals · `m59` training loops: data loaders, schedules, checkpoints, early stopping · `m60` initialization, BatchNorm/LayerNorm, dropout, weight decay, label smoothing · `m61` CNNs: convolution from scratch, im2col, augmentation · `m62` RNNs and LSTMs: vanishing gradients, a character-level language model · `m63` debugging training: overfit one batch, gradient norms, NaN hunting, a bug hunt · `m64` performance: FLOPs, memory, mixed precision, gradient accumulation, checkpointing
 
-**Research:** reproduce a classic paper result (for example ResNet on CIFAR-10) and write up your ablations.
+**Research project (`m65`):** reproduce the ResNet degradation result (deep plain nets train worse; residual connections fix it) over several seeds, investigate the gradient norms, run an ablation, and write it up.
 
 ## Phase 7 · Transformers and LLMs (8–10 weeks)
 

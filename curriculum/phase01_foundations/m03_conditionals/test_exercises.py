@@ -1,8 +1,9 @@
-import inspect
+import ast
 
 import pytest
 
 import exercises
+from code_checks import contains, uses_any
 from exercises import day_type, fizzbuzz, grade, is_leap_year, largest, outcome, triangle_type
 
 
@@ -58,8 +59,7 @@ def test_largest(nums, expected):
 
 
 def test_largest_does_not_use_max_or_sorted():
-    source = inspect.getsource(exercises.largest)
-    assert "max(" not in source and "sorted(" not in source and ".sort(" not in source
+    assert not uses_any(exercises.largest, "max", "sorted", "sort")
 
 
 @pytest.mark.parametrize("day, expected", [
@@ -71,4 +71,4 @@ def test_day_type(day, expected):
 
 
 def test_day_type_uses_match():
-    assert "match " in inspect.getsource(exercises.day_type)
+    assert contains(exercises.day_type, ast.Match)

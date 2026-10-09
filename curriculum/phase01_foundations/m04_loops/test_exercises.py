@@ -1,9 +1,10 @@
-import inspect
+import ast
 import time
 
 import pytest
 
 import exercises
+from code_checks import contains, is_recursive, uses_any, uses_power_half
 from exercises import (
     collatz_steps,
     gcd,
@@ -55,7 +56,7 @@ def test_reverse_digits(n, expected):
 
 
 def test_reverse_digits_uses_arithmetic():
-    assert "str(" not in inspect.getsource(exercises.reverse_digits)
+    assert not uses_any(exercises.reverse_digits, "str")
 
 
 @pytest.mark.parametrize("a, b, expected", [(48, 18, 6), (18, 48, 6), (17, 5, 1), (0, 9, 9), (9, 0, 9), (270, 192, 6)])
@@ -64,8 +65,9 @@ def test_gcd(a, b, expected):
 
 
 def test_gcd_uses_a_loop():
-    source = inspect.getsource(exercises.gcd)
-    assert "math.gcd" not in source and "while" in source
+    assert contains(exercises.gcd, ast.While)
+    assert not is_recursive(exercises.gcd)
+    assert not uses_any(exercises.gcd, "math")
 
 
 @pytest.mark.parametrize("x", [0, 1, 2, 9, 0.25, 1e-4, 12345.678, 1e10])
@@ -75,8 +77,8 @@ def test_newton_sqrt(x):
 
 
 def test_newton_sqrt_does_not_cheat():
-    source = inspect.getsource(exercises.newton_sqrt)
-    assert "** 0.5" not in source and "**0.5" not in source and "sqrt(" not in source.split(":", 1)[1]
+    assert not uses_power_half(exercises.newton_sqrt)
+    assert not uses_any(exercises.newton_sqrt, "sqrt", "isqrt", "pow")
 
 
 def test_staircase():

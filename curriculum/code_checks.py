@@ -47,3 +47,15 @@ def uses_power_half(func):
         and isinstance(node.right, ast.Constant) and node.right.value == 0.5
         for node in ast.walk(_tree(func))
     )
+
+
+LOOP_NODES = (ast.For, ast.While, ast.ListComp, ast.SetComp, ast.DictComp, ast.GeneratorExp, ast.AsyncFor)
+
+
+def has_loops(func):
+    """True if the function contains a Python loop or comprehension (vectorize instead!)."""
+    return contains_any(func, LOOP_NODES)
+
+
+def contains_any(func, node_types):
+    return any(isinstance(node, node_types) for node in ast.walk(_tree(func)))

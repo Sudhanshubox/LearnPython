@@ -32,7 +32,9 @@ Times assume about 10–12 hours a week. Go slower if you need to: depth matters
 
 ## Phase 4 · Mathematics for AI, in code (6–8 weeks)
 
-NumPy and vectorization · linear algebra (vectors, matrices, eigendecomposition, SVD) · calculus (derivatives, gradients, chain rule) · probability and statistics (distributions, Bayes, MLE) · optimization (gradient descent and its variants) · information theory (entropy, cross-entropy, KL divergence)
+`m36` NumPy fundamentals · `m37` vectorization and broadcasting · `m38` linear algebra I: vectors, matrices, least squares · `m39` linear algebra II: eigenvectors, SVD, PCA · `m40` calculus: gradients and the chain rule · `m41` optimization: GD, momentum, Adam, schedules · `m42` probability · `m43` statistics: MLE, bootstrap, significance · `m44` information theory: entropy, cross-entropy, KL, perplexity
+
+**Project (`m45`):** a recommender system with matrix factorization, compared against baselines and SVD on held-out ratings.
 
 Every concept is implemented from scratch in NumPy before you use a library for it.
 

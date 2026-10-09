@@ -2,7 +2,7 @@
 
 Your tests must:
 - all PASS on the real shop.py, and
-- catch every one of 10 hidden buggy versions of shop.py (each must make at least
+- catch every one of 12 hidden buggy versions of shop.py (each must make at least
   one of your tests fail).
 Also use: @pytest.mark.parametrize, a @pytest.fixture of your own, pytest.raises,
 pytest.approx, and the built-in tmp_path fixture.

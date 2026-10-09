@@ -1,0 +1,2 @@
+Attention
+Attention lets every token in a sequence look at every other token and decide which ones matter. Each token produces a query, a key and a value; the dot product of queries and keys gives attention weights, which mix the values. Transformers stack attention layers with feed-forward layers. Because every token attends to every token, the cost grows quadratically with sequence length.

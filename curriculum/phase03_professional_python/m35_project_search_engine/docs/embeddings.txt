@@ -1,0 +1,2 @@
+Embeddings
+An embedding maps a word, sentence or image to a vector of numbers so that similar items get nearby vectors. Search engines compare embeddings with cosine similarity to find relevant documents. Retrieval augmented generation uses embeddings to fetch passages that a language model then reads to answer a question.

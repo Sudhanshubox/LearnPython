@@ -1,0 +1,2 @@
+Overfitting
+A model overfits when it memorizes the training data instead of learning patterns that generalize. Training loss keeps falling while validation loss starts rising. Remedies include more data, data augmentation, dropout, weight decay and early stopping. Always evaluate on data the model has never seen.

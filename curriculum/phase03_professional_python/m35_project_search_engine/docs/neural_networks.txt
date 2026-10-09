@@ -1,0 +1,2 @@
+Neural networks
+A neural network is a stack of layers. Each layer multiplies its input by a weight matrix, adds a bias, and applies a nonlinear activation such as ReLU. Deep networks have many layers, which lets them learn rich representations of images, text and sound. Training adjusts the weights so the network's predictions match the labels.

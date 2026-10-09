@@ -1,0 +1,2 @@
+Backpropagation
+Backpropagation computes the gradient of the loss with respect to every weight in a neural network. It applies the chain rule layer by layer, starting from the output and moving backwards. Each layer receives the gradient from the layer above and passes a gradient to the layer below. Together with gradient descent, backpropagation is how neural networks learn from data.

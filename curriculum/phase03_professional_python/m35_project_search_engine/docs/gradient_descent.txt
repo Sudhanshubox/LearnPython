@@ -1,0 +1,2 @@
+Gradient descent
+Gradient descent minimizes a loss by repeatedly stepping in the direction of the negative gradient. The learning rate controls the step size: too large and training diverges, too small and it crawls. Stochastic gradient descent estimates the gradient from a small random batch of examples, which is faster and adds helpful noise. Adam adapts the step size for each parameter.

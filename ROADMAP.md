@@ -24,11 +24,11 @@ Times assume about 10–12 hours a week. Go slower if you need to: depth matters
 
 **Project (`m23`):** a ten-problem contest with no technique hints. After that, keep solving 3–5 problems a week on LeetCode/Codeforces, reviewed by the mentor.
 
-## Phase 3 · Professional Python (5–6 weeks)
+## Phase 3 · Professional Python (6–8 weeks)
 
-OOP and dataclasses · dunder methods and the data model · iterators and generators · decorators and closures · context managers · type hints and mypy · modules, packages and virtual environments · testing with pytest · Git and GitHub workflow · async/await · performance profiling · how CPython works (bytecode, GIL, memory)
+`m24` classes and objects · `m25` inheritance, composition and interfaces · `m26` the data model (dunder methods) · `m27` dataclasses, enums and type hints · `m28` iterators and generators · `m29` decorators and context managers · `m30` modules, packages and environments · `m31` testing with pytest (graded by mutation testing) · `m32` Git and GitHub · `m33` async and concurrency · `m34` performance and how CPython works
 
-**Project:** a tested, typed Python package published to GitHub.
+**Project (`m35`):** `searchkit`, a typed, tested search engine package with BM25 ranking and a CLI: the retrieval half of RAG.
 
 ## Phase 4 · Mathematics for AI, in code (6–8 weeks)
 

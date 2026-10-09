@@ -1,0 +1,2 @@
+Tokenization
+Language models read text as tokens, not characters or whole words. Byte pair encoding starts from bytes and repeatedly merges the most frequent adjacent pair into a new token. Common words become single tokens while rare words are split into pieces. The tokenizer's vocabulary size trades off sequence length against the size of the embedding table.

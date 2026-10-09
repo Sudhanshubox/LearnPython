@@ -1,0 +1,2 @@
+Decision trees
+A decision tree classifies an example by asking a sequence of yes or no questions about its features. Training picks, at each node, the question that best separates the classes, for example by reducing Gini impurity. Random forests average many trees trained on random subsets of the data, and gradient boosting adds trees one at a time to fix the previous errors.

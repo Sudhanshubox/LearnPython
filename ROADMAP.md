@@ -1,0 +1,75 @@
+# Roadmap: Python → research-level AI
+
+The goal is to become excellent at **practical building**, **problem solving**, and **research-level understanding**. So instead of a single line of topics, the program runs three tracks side by side:
+
+| Track | What it trains | How |
+|---|---|---|
+| **Build** | Writing real, working software | Modules with auto-graded exercises, plus a project at the end of each phase |
+| **Solve** | Problem solving and algorithms | 3–5 problems a week from Phase 2 on, with complexity analysis |
+| **Research** | Deep understanding, reading papers | "Go deeper" questions in each lesson, then paper reproductions from Phase 6 on |
+
+Times assume about 10–12 hours a week. Go slower if you need to: depth matters more than speed.
+
+---
+
+## Phase 1 · Python foundations (5–6 weeks)
+
+`m01` values, names and types ✅ · `m02` strings in depth · `m03` conditionals and boolean logic · `m04` loops and iteration patterns · `m05` lists and tuples · `m06` dicts and sets · `m07` functions, scope and recursion · `m08` errors and exceptions · `m09` files, paths and JSON · `m10` debugging (pdb, tracebacks, print vs logging)
+
+**Project:** a command-line expense tracker that saves to JSON.
+
+## Phase 2 · Problem solving and data structures (6–8 weeks, then ongoing)
+
+Big-O analysis · arrays and two pointers · hashing · stacks and queues · recursion and backtracking · sorting and binary search · linked lists · trees and BSTs · heaps · graphs (BFS, DFS, shortest paths) · dynamic programming · greedy algorithms
+
+**Practice:** a problem-solving framework (understand → examples → brute force → optimize → test → analyze), then LeetCode/Codeforces problems reviewed by the mentor.
+
+## Phase 3 · Professional Python (5–6 weeks)
+
+OOP and dataclasses · dunder methods and the data model · iterators and generators · decorators and closures · context managers · type hints and mypy · modules, packages and virtual environments · testing with pytest · Git and GitHub workflow · async/await · performance profiling · how CPython works (bytecode, GIL, memory)
+
+**Project:** a tested, typed Python package published to GitHub.
+
+## Phase 4 · Mathematics for AI, in code (6–8 weeks)
+
+NumPy and vectorization · linear algebra (vectors, matrices, eigendecomposition, SVD) · calculus (derivatives, gradients, chain rule) · probability and statistics (distributions, Bayes, MLE) · optimization (gradient descent and its variants) · information theory (entropy, cross-entropy, KL divergence)
+
+Every concept is implemented from scratch in NumPy before you use a library for it.
+
+## Phase 5 · Data and classical machine learning (6–7 weeks)
+
+Pandas and data cleaning · visualization (Matplotlib, Seaborn) · linear and logistic regression from scratch · decision trees, random forests, gradient boosting · k-means and PCA · evaluation, cross-validation and avoiding data leakage · scikit-learn pipelines · feature engineering
+
+**Project:** an end-to-end prediction project on a real Kaggle dataset, written up like a report.
+
+## Phase 6 · Deep learning (8–10 weeks)
+
+Build an autograd engine from scratch (like micrograd) · neural networks and backpropagation · PyTorch fundamentals · training loops, initialization, normalization and regularization · CNNs · RNNs and LSTMs · debugging training (loss curves, gradient checks, overfitting a single batch) · GPUs and mixed precision
+
+**Research:** reproduce a classic paper result (for example ResNet on CIFAR-10) and write up your ablations.
+
+## Phase 7 · Transformers and LLMs (8–10 weeks)
+
+Tokenization (build BPE) · embeddings · attention from scratch · the Transformer architecture · build and train a small GPT · scaling laws · pretraining, fine-tuning, LoRA · RLHF and preference optimization (concepts) · inference: sampling, KV cache, quantization
+
+**Research:** read and reproduce *Attention Is All You Need*, GPT-2 and LoRA at small scale.
+
+## Phase 8 · LLM engineering (6–8 weeks)
+
+Calling LLM APIs (this repo's mentor is your first case study: read `mentor/`) · prompt engineering · structured outputs and tool use · embeddings and vector search · RAG · agents · evaluating LLM systems · cost, latency and safety · deploying with FastAPI and Docker
+
+**Project:** a production-quality RAG or agent app, deployed with evals.
+
+## Phase 9 · Research skills and capstone (ongoing → 8+ weeks)
+
+How to read a paper (three-pass method) · experiment design and baselines · tracking experiments (Weights & Biases) · statistics for comparing models · writing a technical blog post or paper · contributing to open-source AI projects
+
+**Capstone:** an original project or a novel extension of a paper, published with code and a write-up.
+
+---
+
+## Weekly rhythm (suggested)
+
+- **4 days:** a module from the current phase (`learn` → exercises → `check` → `quiz`)
+- **2 days:** problem solving (from Phase 2 on) or a paper (from Phase 6 on)
+- **1 day:** review: redo anything you struggled with, `python -m mentor tip`, and rest

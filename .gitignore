@@ -1,0 +1,10 @@
+# Your personal progress and profile (local to your machine)
+progress.json
+
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+venv/
+.env
+.ipynb_checkpoints/

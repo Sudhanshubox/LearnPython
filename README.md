@@ -6,7 +6,7 @@ See **[ROADMAP.md](ROADMAP.md)** for the full curriculum: 9 phases across three 
 
 ## Setup (5 minutes)
 
-1. Install Python 3.10 or newer.
+1. Install Python 3.11 or newer.
 2. Clone this repo and install the dependencies:
 
    ```bash

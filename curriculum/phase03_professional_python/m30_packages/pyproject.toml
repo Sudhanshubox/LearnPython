@@ -1,0 +1,12 @@
+# Complete this file. The tests check that:
+# - [build-system] uses setuptools (already done below)
+# - [project] has name = "textstats", version = "0.1.0", requires-python = ">=3.10",
+#   a one-line description, and dependencies = [] (it has none)
+# - [project.scripts] defines a "textstats" command pointing to textstats.__main__:main
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "textstats"

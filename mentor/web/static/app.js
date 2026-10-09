@@ -129,6 +129,7 @@ function setDirty(dirty) {
 }
 
 function loadIntoEditor(code) {
+  editor.setOption("mode", state.file.endsWith(".py") ? "python" : null);
   editor.setValue(code);
   editor.clearHistory();
   setDirty(false);

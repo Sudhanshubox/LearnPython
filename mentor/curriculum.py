@@ -15,6 +15,7 @@ from pathlib import Path
 from . import config
 
 TEST_TIMEOUT = 120
+EDITABLE_SUFFIXES = {".py", ".toml"}
 
 
 @dataclass
@@ -40,11 +41,12 @@ class Module:
 
     @property
     def files(self):
-        """Python files the learner edits (not tests), relative to the module, exercises.py first."""
+        """Files the learner edits (code and config, not tests), relative to the module, exercises.py first."""
         found = sorted(
             p.relative_to(self.path).as_posix()
-            for p in self.path.rglob("*.py")
-            if not p.name.startswith("test_")
+            for p in self.path.rglob("*")
+            if p.suffix in EDITABLE_SUFFIXES
+            and not p.name.startswith("test_")
             and p.name != "conftest.py"
             and not any(part.startswith((".", "__pycache__")) for part in p.relative_to(self.path).parts)
         )
@@ -62,7 +64,10 @@ class Module:
 
     def code_snapshot(self):
         """All of the learner's files as one markdown string, for the mentor."""
-        return "\n\n".join(f"{rel}:\n```python\n{self.read_file(rel)}\n```" for rel in self.files)
+        def block(rel):
+            lang = "toml" if rel.endswith(".toml") else "python"
+            return f"{rel}:\n```{lang}\n{self.read_file(rel)}\n```"
+        return "\n\n".join(block(rel) for rel in self.files)
 
 
 def all_modules():

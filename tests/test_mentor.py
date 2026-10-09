@@ -117,3 +117,18 @@ def test_failed_send_keeps_history_unchanged(tmp_path, monkeypatch):
     with pytest.raises(client.MentorError):
         conversation.send("hello", lambda t: None, api=object())
     assert conversation.state["api"] == []
+
+
+def test_module_files_lists_editable_files_only():
+    files = curriculum.find("m30").files
+    assert files[0] == "exercises.py"
+    assert "textstats/stats.py" in files and "pyproject.toml" in files
+    assert not any(f.startswith("test_") or "/test_" in f for f in files)
+    assert curriculum.find("m01").files == ["exercises.py"]
+
+
+def test_module_refuses_to_write_other_files():
+    mod = curriculum.find("m01")
+    for bad in ["test_exercises.py", "../m02_strings/exercises.py", "README.md", "new.py"]:
+        with pytest.raises(KeyError):
+            mod.write_file(bad, "x = 1")

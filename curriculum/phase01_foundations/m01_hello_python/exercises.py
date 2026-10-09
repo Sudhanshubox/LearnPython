@@ -1,7 +1,7 @@
 """m01 exercises. Replace each `raise NotImplementedError` with your solution.
 
-Check your work with:  python -m mentor check m01
-Stuck? Ask for a hint:  python -m mentor chat "hint for m01 exercise 3"
+Check your work: press "Run tests" (or run `python -m mentor check m01`).
+Stuck? Press "Hint" in the mentor panel.
 """
 
 

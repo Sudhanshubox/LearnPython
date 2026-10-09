@@ -13,6 +13,8 @@ from pathlib import Path
 
 from . import config
 
+TEST_TIMEOUT = 120
+
 
 @dataclass
 class Module:
@@ -26,9 +28,17 @@ class Module:
         return readme.read_text() if readme.exists() else ""
 
     @property
+    def title(self):
+        first = self.lesson.split("\n", 1)[0].lstrip("# ").strip()
+        return first.split("·", 1)[-1].strip() or self.path.name
+
+    @property
     def exercises(self):
         file = self.path / "exercises.py"
         return file.read_text() if file.exists() else ""
+
+    def save_exercises(self, code):
+        (self.path / "exercises.py").write_text(code)
 
 
 def all_modules():
@@ -39,13 +49,21 @@ def all_modules():
     return modules
 
 
-def find(module_id):
-    """Look up a module by id ("m01") or full folder name ("m01_hello_python")."""
+def get(module_id):
+    """Look up a module by id ("m01") or full folder name ("m01_hello_python"); None if unknown."""
     for mod in all_modules():
         if module_id in (mod.id, mod.path.name):
             return mod
-    known = ", ".join(m.id for m in all_modules())
-    raise SystemExit(f"Unknown module {module_id!r}. Available: {known}")
+    return None
+
+
+def find(module_id):
+    """Like get(), but exits with a helpful message for unknown modules (for the CLI)."""
+    mod = get(module_id)
+    if mod is None:
+        known = ", ".join(m.id for m in all_modules())
+        raise SystemExit(f"Unknown module {module_id!r}. Available: {known}")
+    return mod
 
 
 def next_module(completed):
@@ -57,10 +75,14 @@ def next_module(completed):
 
 def run_tests(mod):
     """Run the module's tests. Returns (passed, output)."""
-    result = subprocess.run(
-        [sys.executable, "-m", "pytest", str(mod.path), "-q", "--no-header", "-p", "no:cacheprovider"],
-        capture_output=True,
-        text=True,
-        cwd=mod.path,
-    )
+    try:
+        result = subprocess.run(
+            [sys.executable, "-m", "pytest", str(mod.path), "-q", "--no-header", "--tb=short", "-p", "no:cacheprovider"],
+            capture_output=True,
+            text=True,
+            cwd=mod.path,
+            timeout=TEST_TIMEOUT,
+        )
+    except subprocess.TimeoutExpired:
+        return False, f"Tests were stopped after {TEST_TIMEOUT} seconds. Is there an infinite loop?"
     return result.returncode == 0, result.stdout + result.stderr

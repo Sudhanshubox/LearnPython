@@ -8,3 +8,6 @@ __pycache__/
 venv/
 .env
 .ipynb_checkpoints/
+
+# Saved mentor conversations from the study screen
+.mentor/

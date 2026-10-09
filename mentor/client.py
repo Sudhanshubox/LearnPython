@@ -1,4 +1,4 @@
-"""Talks to Claude: streams replies and runs interactive chat sessions."""
+"""Talks to Claude: streams replies and runs interactive terminal sessions."""
 
 import anthropic
 
@@ -6,20 +6,23 @@ from . import config, progress, prompts
 
 EXIT_WORDS = {"exit", "quit", "bye", "/exit", "/quit"}
 
-
 NO_KEY = (
-    "\nNo Anthropic credentials found. Get an API key at "
+    "No Anthropic credentials found. Get an API key at "
     "https://console.anthropic.com and run:\n  export ANTHROPIC_API_KEY=sk-ant-..."
 )
 
 
-def _system():
+class MentorError(Exception):
+    """A problem talking to the API, with a message fit to show the learner."""
+
+
+def system_prompt():
     learner = progress.summary(progress.load())
     return prompts.SYSTEM + "\n--- Learner context ---\n" + learner
 
 
-def ask(client, system, messages):
-    """Stream one reply to the terminal. Returns the final message."""
+def ask(client, system, messages, on_text):
+    """Stream one reply, calling on_text(chunk) as text arrives. Returns the final message."""
     try:
         with client.beta.messages.stream(
             model=config.MODEL,
@@ -33,26 +36,25 @@ def ask(client, system, messages):
             fallbacks="default",
         ) as stream:
             for text in stream.text_stream:
-                print(text, end="", flush=True)
+                on_text(text)
             message = stream.get_final_message()
     except TypeError as e:
         # The SDK raises TypeError when it can't find any credentials.
         if "authentication" in str(e):
-            raise SystemExit(NO_KEY)
+            raise MentorError(NO_KEY) from e
         raise
-    except anthropic.AuthenticationError:
-        raise SystemExit("\nYour API key was rejected. Check ANTHROPIC_API_KEY.")
-    except anthropic.RateLimitError:
-        raise SystemExit("\nRate limited by the API. Wait a minute and try again.")
+    except anthropic.AuthenticationError as e:
+        raise MentorError("Your API key was rejected. Check ANTHROPIC_API_KEY.") from e
+    except anthropic.RateLimitError as e:
+        raise MentorError("Rate limited by the API. Wait a minute and try again.") from e
     except anthropic.APIStatusError as e:
-        raise SystemExit(f"\nAPI error ({e.status_code}): {e.message}")
-    except anthropic.APIConnectionError:
-        raise SystemExit("\nCouldn't reach the API. Check your internet connection.")
-    print()
+        raise MentorError(f"API error ({e.status_code}): {e.message}") from e
+    except anthropic.APIConnectionError as e:
+        raise MentorError("Couldn't reach the API. Check your internet connection.") from e
     if message.stop_reason == "refusal":
-        print("[The mentor declined to answer that. Try rephrasing the question.]")
+        on_text("\n\n[The mentor declined to answer that. Try rephrasing the question.]")
     elif message.stop_reason == "max_tokens":
-        print("[Reply was cut off. Say 'continue' to get the rest.]")
+        on_text("\n\n[Reply was cut off. Say 'continue' to get the rest.]")
     return message
 
 
@@ -60,17 +62,25 @@ def text_of_blocks(blocks):
     return "".join(b.text for b in blocks if b.type == "text")
 
 
+def _print(text):
+    print(text, end="", flush=True)
+
+
 def session(opening, interactive=True):
-    """Send `opening` as the first user turn, then keep chatting until the user exits.
+    """Send `opening` as the first user turn, then keep chatting in the terminal until the user exits.
 
     Returns the full conversation so callers can inspect the replies.
     """
     client = anthropic.Anthropic()
-    system = _system()
+    system = system_prompt()
     messages = [{"role": "user", "content": opening}]
     while True:
         print("\nmentor> ", end="")
-        reply = ask(client, system, messages)
+        try:
+            reply = ask(client, system, messages, _print)
+        except MentorError as e:
+            raise SystemExit(f"\n{e}")
+        print()
         # Keep the reply's content blocks as-is so the history stays append-only.
         messages.append({"role": "assistant", "content": reply.content})
         if not interactive:

@@ -23,38 +23,58 @@ See **[ROADMAP.md](ROADMAP.md)** for the full curriculum: 9 phases across three 
    export ANTHROPIC_API_KEY=sk-ant-...   # Windows PowerShell: $env:ANTHROPIC_API_KEY="sk-ant-..."
    ```
 
-4. Meet your mentor:
+4. Open the study screen:
 
    ```bash
-   python -m mentor init
+   python -m mentor web
    ```
 
-## Daily workflow
+   Your browser opens at http://127.0.0.1:8765 (you can also open that address yourself).
 
-```bash
-python -m mentor status          # where am I? (no API call)
-python -m mentor next            # start the next module's interactive lesson
-# ...solve curriculum/.../exercises.py in your editor...
-python -m mentor check m01       # run the tests; get a hint if something fails, a code review if it passes
-python -m mentor quiz m01        # check you really understood it
+## The study screen
+
+```
+┌──────────────────────────────────────┬─────────────────────────┐
+│ Lesson | Exercises                   │ Mentor                  │
+│                                      │                         │
+│ The lesson, or a Python editor with  │ Ask anything, any time. │
+│ a "Run tests" button                 │ It sees your code and   │
+│                                      │ your test results.      │
+│                                      │ [Teach me] [Hint]       │
+│                                      │ [Review]   [Quiz me]    │
+└──────────────────────────────────────┴─────────────────────────┘
 ```
 
-Any time:
+- **Read** the lesson on the left. Select any sentence and press **Ask mentor about this** for a different explanation.
+- **Solve** the exercises in the Exercises tab. `Ctrl+S` saves, `Ctrl+Enter` runs the tests.
+- **Get unstuck** with **Hint**: the mentor reads your code and failing test and gives the smallest hint that helps, never the full answer unless you ask.
+- Each module keeps its own conversation, saved between sessions. **New chat** starts it fresh.
+- Drag the divider to resize the panels.
+
+You can also edit `exercises.py` in your own editor (VS Code, PyCharm); the study screen and mentor always use the file on disk.
+
+## Terminal commands
+
+Everything also works from the terminal:
 
 ```bash
-python -m mentor chat "why does -7 // 2 give -4?"
+python -m mentor status          # your progress (no API call)
+python -m mentor init            # the mentor interviews you to set up your profile
+python -m mentor learn m01       # interactive lesson
+python -m mentor check m01       # run tests + feedback
+python -m mentor quiz m01
 python -m mentor review my_script.py
-python -m mentor tip
+python -m mentor chat "why does -7 // 2 give -4?"
 python -m mentor note "I keep mixing up / and //"   # the mentor remembers this
 ```
 
-Type `exit` (or press Ctrl+D) to end a conversation. Your profile and progress live in `progress.json`, which stays on your machine.
+Your profile and progress live in `progress.json`, and conversations in `.mentor/`. Both stay on your machine.
 
 ## How each module works
 
 ```
 curriculum/phase01_foundations/m01_hello_python/
-├── README.md            the lesson (readable on its own, or taught by the mentor)
+├── README.md            the lesson
 ├── exercises.py         functions for you to implement
 └── test_exercises.py    tests that check your answers
 ```
@@ -68,6 +88,7 @@ Each lesson ends with **"Go deeper"** questions. They're optional, but they're w
 | `MENTOR_MODEL` | `claude-opus-5-5` | Which Claude model teaches you |
 | `MENTOR_EFFORT` | `medium` | `low` is faster and cheaper; `high` thinks harder on tough questions |
 | `MENTOR_MAX_TOKENS` | `32000` | Maximum length of one reply |
+| `MENTOR_PORT` | `8765` | Port for the study screen |
 
 ## For contributors
 

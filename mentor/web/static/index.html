@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LearnPython Study</title>
+  <link rel="stylesheet" href="/static/vendor/codemirror/codemirror.css">
+  <link rel="stylesheet" href="/static/vendor/codemirror/material-darker.css">
+  <link rel="stylesheet" href="/static/vendor/highlight/github.min.css" media="(prefers-color-scheme: light)">
+  <link rel="stylesheet" href="/static/vendor/highlight/github-dark.min.css" media="(prefers-color-scheme: dark)">
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <span class="brand">LearnPython</span>
+    <label class="visually-hidden" for="module-select">Module</label>
+    <select id="module-select"></select>
+    <button id="next-module" class="ghost" title="Go to the next module">Next →</button>
+    <span id="progress" class="muted"></span>
+  </header>
+
+  <main class="split" id="split">
+    <section class="left">
+      <nav class="tabs" role="tablist">
+        <button role="tab" class="tab active" data-tab="lesson">Lesson</button>
+        <button role="tab" class="tab" data-tab="exercises">Exercises</button>
+      </nav>
+
+      <article id="lesson" class="pane markdown"></article>
+      <button id="explain-btn" class="primary small floating" hidden>Ask mentor about this</button>
+
+      <div id="exercises" class="pane exercises" hidden>
+        <div class="toolbar">
+          <button id="save" class="ghost" title="Ctrl+S">Save</button>
+          <button id="run" class="primary" title="Ctrl+Enter">Run tests</button>
+          <span id="save-state" class="muted"></span>
+        </div>
+        <div id="editor-wrap"><textarea id="editor"></textarea></div>
+        <div id="test-panel" hidden>
+          <div class="test-head">
+            <strong id="test-verdict"></strong>
+            <span class="spacer"></span>
+            <button id="ask-failure" class="ghost small">Ask mentor about this</button>
+          </div>
+          <pre id="test-output"></pre>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider" id="divider" title="Drag to resize"></div>
+
+    <aside class="mentor">
+      <div class="mentor-head">
+        <strong>Mentor</strong>
+        <span id="chat-scope" class="muted"></span>
+        <span class="spacer"></span>
+        <button id="new-chat" class="ghost small" title="Start a fresh conversation for this module">New chat</button>
+      </div>
+      <div id="messages" class="messages" aria-live="polite"></div>
+      <div class="quick">
+        <button data-quick="teach">Teach me</button>
+        <button data-quick="hint">Hint</button>
+        <button data-quick="review">Review</button>
+        <button data-quick="quiz">Quiz me</button>
+      </div>
+      <form id="composer" class="composer">
+        <textarea id="input" rows="2" placeholder="Ask anything… (Enter to send, Shift+Enter for a new line)"></textarea>
+        <button type="submit" class="primary" id="send">Send</button>
+      </form>
+    </aside>
+  </main>
+
+  <script src="/static/vendor/marked/marked.min.js"></script>
+  <script src="/static/vendor/dompurify/purify.min.js"></script>
+  <script src="/static/vendor/highlight/highlight.min.js"></script>
+  <script src="/static/vendor/codemirror/codemirror.js"></script>
+  <script src="/static/vendor/codemirror/python.js"></script>
+  <script src="/static/vendor/codemirror/matchbrackets.js"></script>
+  <script src="/static/vendor/codemirror/closebrackets.js"></script>
+  <script src="/static/app.js"></script>
+</body>
+</html>

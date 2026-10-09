@@ -57,3 +57,63 @@ def test_prompt_templates_format():
     for template in (prompts.LEARN, prompts.CHECK_FAILED, prompts.CHECK_PASSED, prompts.QUIZ):
         template.format(module_id=mod.id, phase=mod.phase, lesson=mod.lesson,
                         exercises=mod.exercises, code=mod.exercises, output="")
+
+
+class FakeBlock:
+    type = "text"
+
+    def __init__(self, text):
+        self.text = text
+
+    def model_dump(self, **kwargs):
+        return {"type": "text", "text": self.text}
+
+
+class FakeReply:
+    stop_reason = "end_turn"
+
+    def __init__(self, text):
+        self.content = [FakeBlock(text)]
+
+
+def test_chat_sends_lesson_once_and_code_only_when_changed(tmp_path, monkeypatch):
+    from mentor import chat, client
+
+    monkeypatch.setattr(config, "CHATS_DIR", tmp_path / "chats")
+    sent = []
+
+    def fake_ask(api, system, messages, on_text):
+        sent.append(messages[-1]["content"])
+        on_text("ok")
+        return FakeReply("ok")
+
+    monkeypatch.setattr(client, "ask", fake_ask)
+    conversation = chat.Chat("m01")
+    conversation.send("hello", lambda t: None, api=object())
+    conversation.record_tests(False, "1 failed")
+    conversation.send("help", lambda t: None, api=object())
+
+    assert "--- Lesson (README.md) ---" in sent[0]
+    assert "My current exercises.py" in sent[0]
+    assert "--- Lesson" not in sent[1]
+    assert "My current exercises.py" not in sent[1]  # code unchanged since last message
+    assert "My latest test run (some failed)" in sent[1]
+
+    reloaded = chat.Chat("m01")
+    assert [m["text"] for m in reloaded.display()] == ["hello", "ok", "help", "ok"]
+    assert len(reloaded.state["api"]) == 4
+
+
+def test_failed_send_keeps_history_unchanged(tmp_path, monkeypatch):
+    from mentor import chat, client
+
+    monkeypatch.setattr(config, "CHATS_DIR", tmp_path / "chats")
+
+    def failing_ask(api, system, messages, on_text):
+        raise client.MentorError("no key")
+
+    monkeypatch.setattr(client, "ask", failing_ask)
+    conversation = chat.Chat("m01")
+    with pytest.raises(client.MentorError):
+        conversation.send("hello", lambda t: None, api=object())
+    assert conversation.state["api"] == []

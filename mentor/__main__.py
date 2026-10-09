@@ -91,9 +91,18 @@ def cmd_note(args):
     print("Noted. The mentor will see this in future sessions.")
 
 
+def cmd_web(args):
+    from .web.server import serve
+    serve(open_browser=not args.no_browser)
+
+
 def main():
     parser = argparse.ArgumentParser(prog="python -m mentor", description="Your AI Python & AI mentor.")
     sub = parser.add_subparsers(dest="command", required=True)
+
+    p = sub.add_parser("web", help="open the study screen: lesson + editor + mentor panel")
+    p.add_argument("--no-browser", action="store_true", help="don't open a browser tab")
+    p.set_defaults(func=cmd_web)
 
     sub.add_parser("init", help="first-time setup: the mentor interviews you").set_defaults(func=cmd_init)
     sub.add_parser("status", help="show your progress (no API call)").set_defaults(func=cmd_status)

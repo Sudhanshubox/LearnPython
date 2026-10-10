@@ -1,0 +1,102 @@
+[
+  {
+    "question": "How do I catch exceptions with try and except?",
+    "expected_module": "m08",
+    "reference": "Put the risky code in a try block and handle specific exception types in except blocks."
+  },
+  {
+    "question": "What is a dictionary and how do I look up a key?",
+    "expected_module": "m06",
+    "reference": "A dict maps keys to values; look up with d[key] or d.get(key, default)."
+  },
+  {
+    "question": "How does binary search work on a sorted list?",
+    "expected_module": "m16",
+    "reference": "It repeatedly halves the search range by comparing with the middle element, taking O(log n) time."
+  },
+  {
+    "question": "What does the KV cache store during generation?",
+    "expected_module": "m71",
+    "reference": "The keys and values of previous tokens for every layer, so each new token only computes its own."
+  },
+  {
+    "question": "What is a git commit?",
+    "expected_module": "m32",
+    "reference": "A saved snapshot of the staged changes in the repository's history, with a message."
+  },
+  {
+    "question": "What is the perplexity of a language model?",
+    "expected_module": "m67",
+    "reference": "The exponential of the average negative log-likelihood per token; lower is better."
+  },
+  {
+    "question": "What is LoRA?",
+    "expected_module": "m73",
+    "reference": "Low-rank adaptation: freeze the weights and train a low-rank update B A added to them."
+  },
+  {
+    "question": "How does backpropagation work through a linear layer?",
+    "expected_module": "m57",
+    "reference": "dW = X^T G, db = the sum of G over the batch, and dX = G W^T."
+  },
+  {
+    "question": "How do I read a CSV file with pandas?",
+    "expected_module": "m46",
+    "reference": "Use pd.read_csv(path), which returns a DataFrame."
+  },
+  {
+    "question": "How do dropout and weight decay reduce overfitting?",
+    "expected_module": "m60",
+    "reference": "Dropout randomly zeroes activations during training; weight decay shrinks the weights."
+  },
+  {
+    "question": "What is a closure in Python?",
+    "expected_module": "m07",
+    "reference": "A function that remembers variables from the enclosing scope where it was defined."
+  },
+  {
+    "question": "How does a heap priority queue work?",
+    "expected_module": "m19",
+    "reference": "A binary heap keeps the smallest item at the root, with O(log n) push and pop."
+  },
+  {
+    "question": "What is dynamic programming?",
+    "expected_module": "m21",
+    "reference": "Solving problems by combining solutions to overlapping subproblems, storing them to avoid recomputation."
+  },
+  {
+    "question": "Why are attention scores divided by the square root of d?",
+    "expected_module": "m68",
+    "reference": "To keep the variance of the dot products near 1 so the softmax doesn't saturate."
+  },
+  {
+    "question": "How does BPE tokenization build its vocabulary?",
+    "expected_module": "m66",
+    "reference": "By repeatedly merging the most frequent adjacent pair of tokens into a new token."
+  },
+  {
+    "question": "How does gradient boosting use residuals?",
+    "expected_module": "m54",
+    "reference": "Each new tree is fitted to the residuals (negative gradients) of the current ensemble."
+  },
+  {
+    "question": "What is data leakage?",
+    "expected_module": "m53",
+    "reference": "When information from outside the training data, like the test set, influences training."
+  },
+  {
+    "question": "What does yield do in a generator?",
+    "expected_module": "m28",
+    "reference": "It produces a value and pauses the function until the next value is requested."
+  },
+  {
+    "question": "What are dataclasses for?",
+    "expected_module": "m27",
+    "reference": "They generate __init__, __repr__ and comparisons for classes that mainly hold data."
+  },
+  {
+    "question": "What does await do in async code?",
+    "expected_module": "m33",
+    "reference": "It pauses the coroutine until the awaited operation completes, letting the event loop run others."
+  }
+]

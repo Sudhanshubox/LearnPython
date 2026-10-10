@@ -58,9 +58,11 @@ Every concept is implemented from scratch in NumPy before you use a library for 
 
 ## Phase 8 · LLM engineering (6–8 weeks)
 
-Calling LLM APIs (this repo's mentor is your first case study: read `mentor/`) · prompt engineering · structured outputs and tool use · embeddings and vector search · RAG · agents · evaluating LLM systems · cost, latency and safety · deploying with FastAPI and Docker
+`m76` calling LLM APIs: conversations, streaming, costs, errors, retries, refusal fallbacks (with this repo's mentor as the case study) · `m77` prompt engineering as engineering: templates, XML structure, parsing, prompt regression tests · `m78` structured outputs and tool use: Pydantic, strict schemas, the tool loop, safe execution · `m79` embeddings and vector search: LSA, exact and IVF indexes, recall · `m80` RAG: chunking, hybrid retrieval with RRF, grounded prompts, citations · `m81` agents and workflows: chaining, routing, voting, evaluator–optimizer, a guarded agent · `m82` evaluating LLM systems: metrics, LLM judges, position bias, bootstrap CIs, paired tests · `m83` cost, latency, reliability and safety: prompt caching, rate limits, circuit breakers, PII, prompt injection · `m84` deploying with FastAPI and Docker
 
-**Project:** a production-quality RAG or agent app, deployed with evals.
+**Project (`m85`):** "Ask the course", a production RAG assistant over this course's lessons, with citations, caching, cost tracking, a FastAPI service and an evaluation report.
+
+All Phase 8 exercises run offline: `fakeclaude.py` plugs a scripted fake API into the real `anthropic` SDK.
 
 ## Phase 9 · Research skills and capstone (ongoing → 8+ weeks)
 

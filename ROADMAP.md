@@ -66,9 +66,9 @@ All Phase 8 exercises run offline: `fakeclaude.py` plugs a scripted fake API int
 
 ## Phase 9 · Research skills and capstone (ongoing → 8+ weeks)
 
-How to read a paper (three-pass method) · experiment design and baselines · tracking experiments (Weights & Biases) · statistics for comparing models · writing a technical blog post or paper · contributing to open-source AI projects
+`m86` how to read a paper: three passes, claims vs evidence, BibTeX, checking a paper's numbers · `m87` designing experiments: hypotheses, baselines, grids, ablations, power analysis, pre-registered decisions · `m88` tracking experiments: build a small W&B-style tracker · `m89` statistics for comparing models: paired and Welch t-tests, McNemar, permutation tests, multiple comparisons · `m90` writing about your work: abstracts, honest tables and figures, claim checking · `m91` contributing to open-source AI: minimal reproductions with delta debugging, conventional commits, semver, the PR workflow
 
-**Capstone:** an original project or a novel extension of a paper, published with code and a write-up.
+**Capstone (`m92`):** an original project or a novel extension of a paper. Write a validated proposal (`proposal.toml`), run it like a researcher, publish the code and a write-up, and assess it against the rubric.
 
 ---
 

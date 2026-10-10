@@ -1,0 +1,35 @@
+# Your capstone proposal. Replace every TODO, then run the tests: test_my_proposal passes
+# once the plan is complete. Read the README first, and ask the mentor to review it.
+
+[project]
+title = "TODO"
+one_sentence = "TODO: the whole project in one sentence (at most 40 words)"
+type = "TODO: reproduction, extension, original or application"
+
+[question]
+research_question = "TODO: a specific, answerable question"
+hypothesis = "TODO: what you expect, with a number"
+why_it_matters = "TODO"
+
+[method]
+approach = "TODO"
+baselines = ["TODO"]
+ablations = []
+
+[evaluation]
+metrics = ["TODO"]
+datasets = ["TODO"]
+success_criterion = "TODO: the result that would make you believe the hypothesis (m87)"
+seeds = 0
+
+[compute]
+gpu_hours = 0
+api_budget_usd = 0
+
+[[milestones]]
+week = 1
+deliverable = "TODO"
+
+[[risks]]
+risk = "TODO"
+mitigation = "TODO"

@@ -120,6 +120,7 @@ def test_mlp_gradients(sizes, wd):
         assert loss == pytest.approx(plain + penalty)
 
 
+@pytest.mark.timeout(60)   # the first `import torch` can take several seconds
 def test_matches_pytorch():
     torch = pytest.importorskip("torch")
     m = MLP([4, 6, 3], seed=0)

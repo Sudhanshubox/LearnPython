@@ -88,6 +88,7 @@ def test_complex_expression():
     check(f, [a, b, c], expected)
 
 
+@pytest.mark.timeout(60)   # the first `import torch` can take several seconds
 def test_matches_pytorch():
     torch = pytest.importorskip("torch")
     xs = [0.3, -1.1, 0.8]
